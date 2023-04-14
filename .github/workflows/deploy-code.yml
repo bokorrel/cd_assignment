@@ -10,10 +10,11 @@ jobs:
      runs-on: ubuntu-latest
      if: ${{ github.event.workflow_run.conclusion == 'success' }}
      steps:
-       - run: echo "Run Tests workflow was a success"
-
-#    on-failure:
-#      runs-on: ubuntu-latest
-#      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-#      steps:
-#        - run: echo "Run Tests workflow was a failure"
+       - name: executing remote ssh commands using ssh key
+         uses: ./
+         with:
+           host: 68.183.15.232
+           username: root
+           key: ${{ secrets.KEY }}
+           port: 22
+           script: whoami
