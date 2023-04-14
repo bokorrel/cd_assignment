@@ -1,0 +1,19 @@
+name: Deploy Code
+
+on:
+   workflow_run:
+     workflows: ["Run Tests"]
+     types: [completed] #requested
+
+jobs:
+   on-success:
+     runs-on: ubuntu-latest
+     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+     steps:
+       - run: echo "Run Tests workflow was a success"
+
+#    on-failure:
+#      runs-on: ubuntu-latest
+#      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+#      steps:
+#        - run: echo "Run Tests workflow was a failure"
