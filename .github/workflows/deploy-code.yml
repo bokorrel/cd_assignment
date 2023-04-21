@@ -21,4 +21,4 @@ jobs:
            key: ${{ secrets.KEY }}
            port: 22
            #script: whoami
-           script: deploy_files.sh
+           script: https://github.com/bokorrel/cd_assignment/blob/08f10619c83a8626a7f997315d5262dec100f9e0/deploy_files.sh
