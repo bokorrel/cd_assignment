@@ -25,5 +25,5 @@ jobs:
            script: |
             echo "Get files from Main"
             echo ${{ github.workspace }}/main.py
-            cat echo ${{ github.workspace }}/main.py
+            cat ${{ github.workspace }}/main.py
             #echo $GITHUB_WORKSPACE
