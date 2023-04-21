@@ -6,14 +6,15 @@ on:
      types: [completed] #requested
 
 jobs:
-   on-success:
+   deploy:
      runs-on: ubuntu-latest
      if: ${{ github.event.workflow_run.conclusion == 'success' }}
      steps:
        - name: Checkout repository
          uses: actions/checkout@v3
        - name: Executing remote ssh commands using ssh key
-         uses: ./
+         uses: appleboy/ssh-action@v0.1.10
+         #uses: ./
          with:
            host: 68.183.15.232
            username: root
