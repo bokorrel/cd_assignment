@@ -22,8 +22,8 @@ jobs:
            port: 22
            #script: whoami
            #script: ./deploy_files.sh
-           script: |
-            echo "Get files from Main"
-            echo ${{ github.workspace }}/main.py
-            cat ${{ github.workspace }}/main.py
-            #echo $GITHUB_WORKSPACE
+           #script: |
+           # echo "Get files from Main"
+           # echo ${{ github.workspace }}/main.py
+           # cat ${{ github.workspace }}/main.py
+           script: sh deploy_files.sh
