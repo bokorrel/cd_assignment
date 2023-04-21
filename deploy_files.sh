@@ -7,7 +7,9 @@ echo "Get files from Main"
 
 # Navigate to repository on droplet
 cd /home/cd_assignment
-echo pwd
+
+# Print current location
+pwd
 
 # Pull github code to here
 echo "Git pull"
