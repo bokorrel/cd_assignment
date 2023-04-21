@@ -10,5 +10,5 @@ def index():
     return 'Hello, this is my pretty application!'
 
 @app.route('/congrats')
-def cow():
+def congrats():
     return 'Whooooo this is the end of the Back-end Course!'
