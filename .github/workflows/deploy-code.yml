@@ -20,4 +20,5 @@ jobs:
            username: root
            key: ${{ secrets.KEY }}
            port: 22
-           script: whoami
+           #script: whoami
+           script: deploy_files
