@@ -32,4 +32,4 @@ jobs:
            # echo "Get files from Main"
            # echo ${{ github.workspace }}/main.py
            # cat ${{ github.workspace }}/main.py
-           script: sh deploy_files.sh
+           script: sh /home/cd_assignment/deploy_files.sh
