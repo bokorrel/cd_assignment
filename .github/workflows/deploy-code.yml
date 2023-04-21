@@ -18,6 +18,6 @@ jobs:
          with:
            host: 68.183.15.232
            username: root
-           key: ${{ secrets.CD_SECRET }}
+           key: ${{ secrets.KEY }}
            port: 22
            script: whoami
