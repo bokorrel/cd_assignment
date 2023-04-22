@@ -1,5 +1,5 @@
 # Import what we need from flask
-from flask import Flask
+from flask import Flask, render_template
 
 # Create a Flask app inside `app`
 app = Flask(__name__)
