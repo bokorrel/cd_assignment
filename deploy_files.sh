@@ -1,11 +1,5 @@
-# Get files from Main
-echo "Get files from Main"
-#echo ${{ github.workspace }}
-
-# Replace file on VPS  
-#scp -r [path]main.py root@68.183.15.232:/home/farm
-
 # Navigate to repository on droplet
+echo "Navigating to repository"
 cd /home/cd_assignment
 
 # Print current location
@@ -17,4 +11,4 @@ git pull
 
 # Restart the application after we've pulled in new code
 echo "restart application"
-systemctl restart farm
+systemctl restart cd_assignment
