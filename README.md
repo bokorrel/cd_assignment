@@ -18,22 +18,27 @@ The application has it's own service on the VPS (alongside the 'farm' service we
 Name three components of your solution, explain what they are and how they relate to each other. A 'component' can be anthing from GitHub Actions or Bash to Digital Ocean and SSH.
 
 The main focus of this repo is the **deployment pipeline**, which includes a few noteworthy components:
-1. appleboy/ssh-action 
-2. ....
-3. .....
+1. pytest
+   The first job of the deployment pipeline is the *run-tests* job, fot testing the pushed code I used *pytest*. Pytest is a python module and is therefore not just accessible 
+   actions/checkout@v3
 
+2. needs
+   New or adjusted code that is pushed to Github should only be deployed to the VPS if all tests were successfull, that's why I used the 'needs' function      inside the deployment pipeline to only run the *deploy-code* job if the *run-test* job was successfull.
+
+3. appleboy/ssh-action 
+   
 
 Discuss three problems that you encountered along the way and how you solved them.
 ## Challenges
-1. SSH keys were new to me, so at first I made the mistake to follow an article about adding SSH keys to Github with you Github emailaddress:
-   > ssh-keygen -t ed25519 -C "youremail@homtmail.com"
+1. For running commands on the VPS I needed SSH keys to connect, but SSH authentication was new to me, so at first I made the mistake to follow an article    about adding SSH keys to Github with you Github emailaddress:
+   > ssh-keygen -t ed25519 -C "youremail@hotmail.com"
    
    I added the private key of this SSH key pair to my Github SSH keys (on account level), but later on I found out that this was not what I needed. I wanted    to give Github access to my VPS, but with the above configuration I gave the VPS write access to my Github instead. 
    That's why I deleted this SSH key pair and generated a new pair with the following command:
    
    > ssh-keygen
    
-3. For running commands on the VPS I added the SSH private key to the Secrets of this repo, but at first I kept getting the following error:
+3. After generating the new SSH key pair I added the private key to the Secrets of this repo, but at first I kept getting the following error:
    > ssh.ParsePrivateKey: ssh: no key found
    
    Which lead to the error: 
