@@ -42,12 +42,15 @@ The application has it's own service on the VPS (alongside the 'farm' service we
 ## Components 
 The main focus of this repo is the **deployment pipeline**, which includes a few noteworthy components:
 1. pytest
+
    The first job of the deployment pipeline is the *run-tests* job, in this job the code will be testing using *pytest*. Pytest is a python module and is therefore not default accessible from Github. Thats why we first need to install the pytest module, this is only possible if Python is installed and if Python has access to the *requirements.txt* file. This is made possible by checking out the github repository first (with the use of actions/checkout@v3 action), in that way the *requirements.txt* file can be read and Python knows what version of  pytest to install. Finally, the pytest command will be executed to trigger all test files in the repo. 
 
 2. needs
+
    New or adjusted code that is pushed to this repository should only be deployed to the VPS if all tests were successfull, that's why I used the 'needs' function      inside the deployment pipeline to only run the *deploy-code* job if the *run-test* job was successfull.
 
 3. appleboy/ssh-action 
+
    The second job of the deployment pipeline is the *deploy-code* job, for which I made use of appleboy/ssh-action. This action connects to the VPS with SSH authentication and runs commands on the VPS. Any command can be entered, but in this job we use it to deploy the pushed code onto the VPS, so that the changes will reflect to the application.
    
 
