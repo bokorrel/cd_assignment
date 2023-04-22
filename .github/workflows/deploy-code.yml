@@ -20,17 +20,9 @@ jobs:
          run: pip install -r requirements.txt
        - name: Executing remote ssh commands using ssh key
          uses: appleboy/ssh-action@v0.1.10
-         #uses: ./
          with:
-           host: 68.183.15.232
-           username: root
-           key: ${{ secrets.KEY }}
-           port: 22
-           #script: whoami
-           #script: ./deploy_files.sh
-           #script: |
-           # echo "Get files from Main"
-           # echo ${{ github.workspace }}/main.py
-           # cat ${{ github.workspace }}/main.py
+           host: ${{ secrets.VPS_HOST }}
+           username: ${{ secrets.VPS_USERNAME }}
+           key: ${{ secrets.VPS_PRIVATE_KEY }}
+           port: ${{ secrets.VPS_PORT }}
            script: sh /home/cd_assignment/deploy_files.sh
-           #script: pwd
