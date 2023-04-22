@@ -15,20 +15,25 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests
         run: pytest
-        
-#   deploy-code:
-#     runs-on: ubuntu-20.04
-#     needs:
-#       - run-tests
-#     if: needs.run-tests.result == 'success'
-#     steps:
-#       - name: Access VPS
-#         run: echo "Accessing VPS now"
-#   inform-failure:
-#     runs-on: ubuntu-20.04
-#     needs:
-#       - run-tests
-#     if: needs.run-tests.result == 'failure'
-#     steps:
-#       - name: Inform about failure
-#         run: echo "run-tests failed"
+  deploy-code:
+     runs-on: ubuntu-20.04
+     needs:
+       - run-tests
+     if: needs.run-tests.result == 'success'
+     steps:
+       - name: Checkout repository
+         uses: actions/checkout@v3
+       - name: Setup Python 3.11
+         uses: actions/setup-python@v3
+         with:
+          python-version: '3.11.0'
+       - name: Install Dependencies
+         run: pip install -r requirements.txt
+       - name: Executing remote ssh commands using ssh key
+         uses: appleboy/ssh-action@v0.1.10
+         with:
+           host: ${{ secrets.VPS_HOST }}
+           username: ${{ secrets.VPS_USERNAME }}
+           key: ${{ secrets.VPS_PRIVATE_KEY }}
+           port: ${{ secrets.VPS_PORT }}
+           script: sh /home/cd_assignment/deploy_files.sh
