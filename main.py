@@ -9,6 +9,6 @@ app = Flask(__name__)
 def index():
     return 'Hello, this is my pretty application!'
 
-@app.route('/congrats')
-def congrats():
+@app.route('/final')
+def final():
     return 'Whooooo this is the end of the Back-end Course!'
