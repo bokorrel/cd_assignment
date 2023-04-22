@@ -12,3 +12,6 @@ git pull
 # Restart the application after we've pulled in new code
 echo "restart application"
 systemctl restart cd_assignment
+
+# Check service status
+systemctl status cd_assignment
